@@ -26,7 +26,7 @@ end
 
 Stock.find_by(ticker: "FB").ratios.build(name: "current ratio", value: 5.509).save
 Stock.find_by(ticker: "FB").ratios.build(name: "gross margin", value: 80.4658).save
-Stock.find_by(ticker: "FB").ratios.build(name: "net profit_margin", value: 36.544).save
+Stock.find_by(ticker: "FB").ratios.build(name: "net profit margin", value: 36.544).save
 Stock.find_by(ticker: "FB").ratios.build(name: "return on equity", value: 6.6643).save
 Stock.find_by(ticker: "FB").ratios.build(name: "return on assets", value: 5.3579).save
 Stock.find_by(ticker: "FB").ratios.build(name: "free cashflow per share", value: 2.1122).save
