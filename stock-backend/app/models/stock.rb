@@ -1,3 +1,5 @@
 class Stock < ApplicationRecord
     has_many :ratios
+
+    validates_numericality_of :price, :only_float => true, :greater_than_or_equal_to => 0.0
 end
