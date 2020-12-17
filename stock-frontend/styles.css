@@ -102,4 +102,19 @@ body {
   /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
   .show {display:block;}
 
+  form {
+    background-color:gray;
+    height: 50px;
+    width: 200px;
+    box-shadow: 10px 10px black;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+  }
 
+  form button {
+    font-size: .65em;
+    color: #fff;
+    background-color: green;
+    border-radius: 10px;
+  }

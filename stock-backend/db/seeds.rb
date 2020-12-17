@@ -18,11 +18,11 @@ stocks_ticker = [
 ]
 
 stock_collection = []
+stock_price = {'FB' => 189.51, 'AAPL' => 121.78, 'NFLX' => 493.60, 'GOOGL' => 1776.86}
 
 stocks_ticker.each do |ticker|
-  stock_collection << Stock.create(ticker: ticker)
+  stock_collection << Stock.create(ticker: ticker, price: stock_price[ticker])
 end
-
 
 Stock.find_by(ticker: "FB").ratios.build(name: "current ratio", value: 5.509).save
 Stock.find_by(ticker: "FB").ratios.build(name: "gross margin", value: 80.4658).save
@@ -38,14 +38,12 @@ Stock.find_by(ticker: "AAPL").ratios.build(name: "return on equity", value: 19.3
 Stock.find_by(ticker: "AAPL").ratios.build(name: "return on assets", value: 3.9128).save
 Stock.find_by(ticker: "AAPL").ratios.build(name: "free cashflow per share", value: 1.0526).save
 
-
 Stock.find_by(ticker: "NFLX").ratios.build(name: "current ratio", value: 1.2376).save
 Stock.find_by(ticker: "NFLX").ratios.build(name: "gross margin", value: 39.901).save
 Stock.find_by(ticker: "NFLX").ratios.build(name: "net profit margin", value: 12.275).save
 Stock.find_by(ticker: "NFLX").ratios.build(name: "return on equity", value: 7.6449).save
 Stock.find_by(ticker: "NFLX").ratios.build(name: "return on assets", value: 2.0454).save
 Stock.find_by(ticker: "NFLX").ratios.build(name: "free cashflow per share", value: 2.5298).save
-
 
 Stock.find_by(ticker: "GOOGL").ratios.build(name: "current ratio", value: 3.4101).save
 Stock.find_by(ticker: "GOOGL").ratios.build(name: "gross margin", value: 54.2655).save
