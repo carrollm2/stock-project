@@ -31,15 +31,13 @@ body {
     background-color: gray  
   } 
 
-
-
   div.card {
     background-color:beige;
     height: 500px;
     width: 600px;
     box-shadow: 10px 10px green;
     margin: 10px;
-    padding: 10px;
+    padding: 30px;
     border-radius: 10px;
   }
 

@@ -23,7 +23,7 @@ class StocksController < ApplicationController
 
     private
     def stock_params
-        params.require(:stock).permit(:ticker, :price, :ratios =>[])
+        params.require(:stock).permit(:ticker, :price, ratios_attributes: [:id, :name, :value])
     end  
 
     def set_stock

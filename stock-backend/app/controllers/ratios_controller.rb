@@ -6,7 +6,7 @@ class RatiosController < ApplicationController
     def create
 
         stock = Stock.find(params[:stock_id])
-        ratio = stock.ratios.build(name: params[:ratio_name], value: StockData::RATIOS[stock.ticker][params[:ratio_name]])
+        ratio = stock.ratios.build(name: params[:ratio_name], value: StockData::STOCKS["stock"][stock.ticker]["ratios"][params[:ratio_name]])
 
         if ratio.save
             render json: ratio
