@@ -1,7 +1,7 @@
 require_relative '../models/ratio.rb'
 
 class RatiosController < ApplicationController
-    before_action :set_ratio, only: [:show, :destroy]
+    before_action :set_ratio, only: [:show, :update, :destroy]
 
     def create
 
@@ -26,6 +26,16 @@ class RatiosController < ApplicationController
         render json: @ratio, except: [:created_at, :updated_at]
     end
 
+    
+    def update
+
+        if @ratio.update(ratio_params)
+            render json: @ratio
+        else
+            render json: {message: @ratio.errors.messages[:value][0]}
+        end   
+    end
+
 
     def destroy
         @ratio.destroy
@@ -33,6 +43,10 @@ class RatiosController < ApplicationController
 
 
     private
+    def ratio_params
+        params.require(:ratio).permit(:name, :value)
+    end  
+
     def set_ratio
         @ratio = Ratio.find_by_id(params[:id])
     end
