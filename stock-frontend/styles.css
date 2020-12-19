@@ -65,6 +65,11 @@ button.release {
   background-color: #E1332D;
 }
 
+button.edit {
+  float: right;
+  background-color: green;
+}
+
 
 /* Dropdown Button */
 .dropbtn {
