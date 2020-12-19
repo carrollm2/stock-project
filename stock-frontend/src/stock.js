@@ -122,7 +122,8 @@ class Stock {
 
       this.renderUpdateForm(e)
 
-      const updateSubmitButton = document.querySelector('form button')
+      const updateSubmitButton = document.querySelector('form button[data-button="submit"]')  
+      const updateCancelButton = document.querySelector('form button[data-button="cancel"]') 
 
       updateSubmitButton.addEventListener('click', function(s){
         s.preventDefault()
@@ -141,7 +142,6 @@ class Stock {
             body: JSON.stringify(bodyJSON)
         }    
 
-
         fetch(`${BACKEND_URL}/stocks/${e.target.dataset.stockId}`, configObj)
             .then(res => res.json())
             .then(json => {
@@ -156,6 +156,11 @@ class Stock {
 
       })
 
+      updateCancelButton.addEventListener('click', function(s){
+        s.preventDefault()
+        s.target.parentElement.remove()
+      })
+
     }
 
 
@@ -165,11 +170,16 @@ class Stock {
       updateForm.setAttribute("form-id", e.target.dataset.stockId)
       const priceInput = document.createElement("input")
       const submitButton = document.createElement("button")
+      submitButton.setAttribute("data-button", "submit")
+      const cancelButton = document.createElement("button")
+      cancelButton.setAttribute("data-button", "cancel")
       priceInput.placeholder = "Enter Price Here."
       submitButton.innerText = "Update Price"
+      cancelButton.innerText = "Cancel"
 
       updateForm.appendChild(priceInput)
       updateForm.appendChild(submitButton)
+      updateForm.appendChild(cancelButton)
 
       const selectedUpdate = document.querySelector(`div[data-id="${e.target.dataset.stockId}"]`) 
       selectedUpdate.appendChild(updateForm)
