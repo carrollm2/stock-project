@@ -22,6 +22,12 @@ class Stock {
 
         const div = document.createElement("div")
 
+        const removeStockButton = document.createElement("button")
+        removeStockButton.setAttribute("data-stock-id", data.id)
+        removeStockButton.setAttribute("class", "release")
+        removeStockButton.innerText = "Remove Stock"
+        removeStockButton.addEventListener('click', this.deleteStock)
+
         const ticker = document.createElement("p")
         const price = document.createElement("p")
         const updated = document.createElement("p")
@@ -80,6 +86,7 @@ class Stock {
           dropdownOption.addEventListener("click", this.createRatio)
         })
 
+        div.appendChild(removeStockButton)
         div.appendChild(ticker)
         div.appendChild(price)
         div.appendChild(updated)
@@ -94,6 +101,28 @@ class Stock {
             newRatio.renderRatio(ratio)
         })
     }
+
+    deleteStock = (e) => {
+
+
+      console.log('@@delete stock')
+      e.preventDefault()
+    
+      const configObj = {
+          method: "DELETE",
+          headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+          }
+      }
+    
+      const selectedStock = e.target.dataset.stockId
+      const stockPATH =  STOCKS_URL + '/' + selectedStock
+      fetch(stockPATH, configObj)
+      e.target.parentElement.remove()
+    
+    }
+
 
 
 
@@ -216,6 +245,7 @@ class Stock {
 
   }
   
+
   Stock.all = [];
   
 
