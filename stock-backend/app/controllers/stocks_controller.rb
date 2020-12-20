@@ -22,8 +22,10 @@ class StocksController < ApplicationController
 
 
     def destroy
-        @stock.destroy
-    end
+        @stock.ratios.each {|ratio| ratio.destroy}
+        @stock.destroy   
+    end    
+
 
 
     private
