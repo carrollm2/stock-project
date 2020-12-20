@@ -1,7 +1,7 @@
 body{ 
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://pixy.org/src2/574/5745553.jpg");
   background-size: cover;
-  color: #1c1c1c;
+  background-color: #1c1c1c;
   font-family: 'Raleway', sans-serif;
 }
 
