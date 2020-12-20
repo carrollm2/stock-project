@@ -22,7 +22,6 @@ class StocksController < ApplicationController
 
 
     def destroy
-        binding.pry
         @stock.destroy
     end
 
