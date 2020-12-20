@@ -1,5 +1,5 @@
 class StocksController < ApplicationController
-    before_action :set_stock, only: [:show, :update]
+    before_action :set_stock, only: [:show, :update, :destroy]
 
     def index
         stocks = Stock.all
@@ -18,6 +18,12 @@ class StocksController < ApplicationController
         else
             render json: {message: @stock.errors.messages[:price][0]}
         end   
+    end
+
+
+    def destroy
+        binding.pry
+        @stock.destroy
     end
 
 
