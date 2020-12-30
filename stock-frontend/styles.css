@@ -58,6 +58,12 @@ button {
   border-radius: 10px;
 }
 
+
+button.favorite {
+  float: right;
+  background-color: black;
+}
+
 button.release {
   float: right;
   background-color: #E1332D;
