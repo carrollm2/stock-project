@@ -5,6 +5,7 @@ class Stock {
     constructor(data) {
  
       this.id = data.id
+      this.favorited = data.favorited
       this.ticker = data.ticker;
       this.price = data.price;
       this.ratios = data.ratios;
@@ -21,6 +22,12 @@ class Stock {
     renderStock(data){
 
         const div = document.createElement("div")
+
+        const favoriteButton = document.createElement("button")
+        favoriteButton.setAttribute("data-stock-id", data.id)
+        favoriteButton.setAttribute("class", "favorite")
+        favoriteButton.innerText = "Favorite?"
+        favoriteButton.addEventListener('click', this.favoriteStock)        
 
         const removeStockButton = document.createElement("button")
         removeStockButton.setAttribute("data-stock-id", data.id)
@@ -86,6 +93,7 @@ class Stock {
           dropdownOption.addEventListener("click", this.createRatio)
         })
 
+        div.appendChild(favoriteButton)
         div.appendChild(removeStockButton)
         div.appendChild(ticker)
         div.appendChild(price)
@@ -141,6 +149,48 @@ class Stock {
       }
 
     }
+
+
+    favoriteStock = (e) => {
+      e.preventDefault()
+      
+      console.log('@@favoriteStock')
+
+      const stock_id = parseInt(e.target.dataset.stockId);
+      const stock = Stock.findById(stock_id);
+      stock.favorited = true
+      const favorited = true
+      const bodyJSON = {stock_id, favorited} 
+
+      const configObj = {
+          method: "PATCH",
+          headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+          },
+          body: JSON.stringify(bodyJSON)
+      }    
+
+      fetch(`${BACKEND_URL}/stocks/${e.target.dataset.stockId}`, configObj)
+          .then(res => res.json())
+          .then(json => {
+              if(json.message){  
+                  alert(json.message)
+              } else {
+
+                if (document.querySelector(`div[data-id="${e.target.dataset.stockId}"] .favorite`).innerText === "Favorite?"){
+                  document.querySelector(`div[data-id="${e.target.dataset.stockId}"] .favorite`).innerText = "Favorited!"
+                  document.querySelector(`div[data-id="${e.target.dataset.stockId}"] .favorite`).style.background = "blue"
+                } else {
+                  document.querySelector(`div[data-id="${e.target.dataset.stockId}"] .favorite`).innerText = "Favorite?"
+                  document.querySelector(`div[data-id="${e.target.dataset.stockId}"] .favorite`).style.background = "black"
+                }
+
+              }
+          })
+          .catch(error => alert(error.message));
+
+      }
 
 
 
